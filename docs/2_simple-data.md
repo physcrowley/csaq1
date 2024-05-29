@@ -4,7 +4,7 @@
 
 ## Vocabulary
 
-**delimiter**: a character or sequence of characters used to separate fields in a text file. Common delimiters include spaces ` `, commas `,`, tabs `\t`, and pipes `|`, but any character can be used as a delimiter.
+**delimiter**: a character or sequence of characters used to separate fields in a text file. Common delimiters include spaces, commas `,`, tabs `\t`, and pipes `|`, but any character can be used as a delimiter.
 
 **field**: a single piece of data in a text file. Fields are separated by delimiters.
 
