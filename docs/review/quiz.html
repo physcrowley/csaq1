@@ -37,8 +37,8 @@ Initial code idea from https://webdesign.tutsplus.com/multiple-choice-quiz-app-w
       <div class="feedback">
         <div><p id="feedback-text"></p></div>
         <div>
-          <button class="nav" id="next" onclick="nextQuestion()">Suivant</button>
-          <button class="nav" id="quit" onclick="quitAndReturn()">Quitter</button>
+          <button class="nav" id="next" onclick="nextQuestion()">Next</button>
+          <button class="nav" id="quit" onclick="quitAndReturn()">Quit</button>
         </div>
         
     </div>
@@ -186,10 +186,10 @@ function nextQuestion() {
 /** Contrôleur lié aux boutons des choix de réponse */
 function checkAnswer(selected) {
   if (selected === questions[currentQuestion].correct) {
-    feedback.innerHTML = `<p class="correct">C'est ça!</p>`;
+    feedback.innerHTML = `<p class="correct">That's it!</p>`;
     correctAnswers++;
   } else {
-    feedback.innerHTML = `<p class="incorrect">Pas tout à fait!</p>`;
+    feedback.innerHTML = `<p class="incorrect">Not quite</p>`;
   }
   feedback.innerHTML += `<p>${questions[currentQuestion].feedback}</p>`;
   nextButton.disabled = false;
