@@ -79,6 +79,10 @@ It's probably better to use it than not, but :
 
 ## 📝 Practice
 
+### Test your comprehension
+
+Take this short quiz to verify your understanding : [Quick check](./review/2-fields.html)
+
 ### Coding challenges
 
 1. Reproduce the code and data file above in your project's folder (write the code in `main.py`). Set the delimiter in the `split()` method to `', '` (comma and space). What happens to the output? Would this remove the need for `strip()` if there was a text field at the end of the record (i.e. just before the newline)? Add your answers as a comment in main.py.
