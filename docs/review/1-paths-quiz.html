@@ -1,0 +1,191 @@
+<!--
+Initial code idea from https://webdesign.tutsplus.com/multiple-choice-quiz-app-with-javascript--cms-107756t 
+-->
+<!DOCTYPE html>
+<html lang="fr-ca">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/default.css">
+  <script src="highlight.min.js"></script>
+
+  <div class="quiz-container">
+    <h1 id="title"></h1>
+    <div class="question">
+      <p id="question-text"></p>
+      <div class="code">
+        <pre id="question-code"></pre>
+      </div>
+      <div class="choices">
+        <div>
+          <pre class="question-output"></pre>
+          <button class="choice" onclick="checkAnswer(0)"></button>
+        </div>
+        <div>
+          <pre class="question-output"></pre>
+          <button class="choice" onclick="checkAnswer(1)"></button>
+        </div>
+        <div>
+          <pre class="question-output"></pre>
+          <button class="choice" onclick="checkAnswer(2)"></button>
+        </div>
+      </div>
+      <div class="feedback">
+        <div><p id="feedback-text"></p></div>
+        <div>
+          <button class="nav" id="next" onclick="nextQuestion()">Next</button>
+          <button class="nav" id="quit" onclick="quitAndReturn()">Quit</button>
+        </div>
+        
+    </div>
+  </div>
+  <script>
+
+const title = "Paths";
+const questions = [
+  {
+    question: "What is the correct path to eep.wav from main.py given the file structure below?",
+    code: "project\n│\n├── data\n│   ├── input.txt\n│   └── output.txt\n│\n├── images\n│   └── cat.png\n│\n├── sounds\n│   └── eep.wav\n│\n└── main.py",
+    output: ["", "", ""],
+    choices: ["./eep.wav", "./sounds/eep", "./sounds/eep.wav"],
+    correct: 2,
+    feedback: "The correct answer is './sounds/eep.wav'. The path starts from main's current directory and goes down to the sounds directory to find the file. The path includes the file's extension '.wav'.",
+  },
+  {
+    question: "What symbol is used to represent the user's home directory?",
+    code: "",
+    output: ["", "", ""],
+    choices: ["/", "~", ".."],
+    correct: 1,
+    feedback: "It's <code>~</code>. <p><code>/</code> represents a disk's root directory, like 'C:'. <p><code>..</code> represents the parent directory of the current directory.",
+  }
+];
+
+/*
+CONTENU DE LA PAGE
+*/
+document.title = title;
+document.getElementById("title").textContent = title;
+
+/*
+VARIABLES GLOBALES
+*/
+let currentQuestion = 0;
+let correctAnswers = 0;
+
+const feedback = document.getElementById("feedback-text");
+const nextButton = document.getElementById("next");
+nextButton.disabled = true;
+
+/*
+AFFICHAGE
+*/
+
+/** Met à jour les contenus des divers éléments du quiz */
+function showQuestion() {
+  const questionText = document.getElementById("question-text");
+  questionText.textContent = questions[currentQuestion].question;
+
+  const questionCode = document.getElementById("question-code");
+  let codeText = questions[currentQuestion].code;
+  if (codeText) {
+    if (codeText.startsWith("<img")) {
+      questionCode.innerHTML = codeText;
+    } else {
+      questionCode.innerHTML = `<code class="language-java">${codeText}</code>`;
+    }
+  } else {
+    questionCode.textContent = codeText;
+  }
+
+  // ATTEMPT AT DYNAMIC NUMBER OF OUTPUTS AND CHOICES... breaks the layout
+  // const options = document.querySelector(".choices");
+  // options.innerHTML = "";
+  // const numOutputs = questions[currentQuestion].output.length;
+  // const numChoices = questions[currentQuestion].choices.length;
+  // let index = 0;
+  // while (true) {
+  //   // end of both lists
+  //   if (index >= numOutputs && index >= numChoices) {
+  //     break;
+  //   }
+  //   options.innerHTML += `<div>`;
+  //   // output value
+  //   const outputText = index < numOutputs ? questions[currentQuestion].output[index] : "";
+  //   if (outputText) {
+  //     options.innerHTML += `<pre class="question-output"><code class="language-plaintext">${outputText}</code></pre>`;
+  //   }
+  //   // choice value
+  //   const choice = index < numChoices ? questions[currentQuestion].choices[index] : "";
+  //   if (choice) {
+  //     options.innerHTML += `<button class="choice" onclick="checkAnswer(${index})">${choice}</button>`;
+  //   }
+  //   options.innerHTML += `</div>`;
+  //   index++;
+  // }
+
+  const outputChoices = document.querySelectorAll(".question-output");
+  outputChoices.forEach((output, index) => {
+    let outputText = questions[currentQuestion].output[index];
+    // if outputText is not empty, set innerHTML to <code class="language-plaintext"></code>
+    if (outputText) {
+      output.innerHTML = `<code class="language-plaintext">${outputText}</code>`;
+    } else {
+      output.textContent = outputText;
+    }
+  });
+
+  const choices = document.querySelectorAll(".choice");
+  choices.forEach((choice, index) => {
+    choice.textContent = questions[currentQuestion].choices[index];
+  });
+  hljs.highlightAll();
+}
+
+/*
+ÉVÉNEMENTS
+*/
+/** Contrôleur du bouton Suivant */
+function nextQuestion() {
+  currentQuestion++;
+  feedback.textContent = "";
+  nextButton.disabled = true;
+
+  if (currentQuestion < questions.length) {
+    showQuestion();
+  } else {
+    const questionContainer = document.querySelector(".question");
+    questionContainer.innerHTML = `<p>You have correctly answered ${correctAnswers} of ${questions.length} questions.</p><button class="nav" id="quit" onclick="quitAndReturn()">Quit</button>`;
+  }
+}
+
+/** Contrôleur lié aux boutons des choix de réponse */
+function checkAnswer(selected) {
+  if (selected === questions[currentQuestion].correct) {
+    feedback.innerHTML = `<p class="correct">That's it!</p>`;
+    correctAnswers++;
+  } else {
+    feedback.innerHTML = `<p class="incorrect">Not quite</p>`;
+  }
+  feedback.innerHTML += `<p>${questions[currentQuestion].feedback}</p>`;
+  nextButton.disabled = false;
+}
+
+/** Contrôleur lié au bouton Quitter */
+function quitAndReturn() {
+  // use browser back button to return to previous page
+  window.history.back();
+}
+
+/*
+POINT DE DÉPART
+*/
+showQuestion();
+
+  </script>
+</body>
+</html>

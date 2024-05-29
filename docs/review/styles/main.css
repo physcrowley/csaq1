@@ -1,0 +1,105 @@
+/* From  https://webdesign.tutsplus.com/multiple-choice-quiz-app-with-javascript--cms-107756t */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+html, body {
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+  font-size: 100%;
+  color: #3a3a3a;
+  padding: 20px;
+}
+
+body {
+  font-size: 1em;
+  background-color: #d5d5d5;
+}
+
+div {
+  font-size: 1em
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+button {
+  min-width: 50px;
+}
+
+pre {
+  padding: 0em 0.5em;
+  text-align: left
+}
+
+.quiz-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.choices {
+  display: flex;
+  /* personalised */
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 2px solid #d4e9f7;
+  border-radius: .5em;
+}
+
+.choice, .nav {
+  display: block;
+  margin: 5px 5px;
+  padding: .5em .75em;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.choice {
+  background-color: #3498db;
+}
+
+.choice:hover {
+  background-color: #2980b9;
+}
+
+/* personalised css based on template */
+.nav {
+  display: inline;
+  background-color: #34db69;
+  flex-direction: row;
+}
+
+.nav:disabled {
+  background-color: #d5d5d5;
+}
+
+.nav:not(:disabled):hover {
+  background-color: #2fb75e;
+}
+
+.correct {
+  color: #2fb75e;
+  font-weight: bold;
+}
+
+.incorrect {
+  color: #e74c3c;
+  font-weight: bold;
+}
