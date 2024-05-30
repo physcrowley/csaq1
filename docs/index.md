@@ -23,6 +23,17 @@ If you can understand how to read and write data from structured and unstructure
 ## Lessons
 
 1. [Managing resource access in Python using `with open()`](./1_with-open.md)
-1. [Extracting data from a simple file](./2_simple-data.md)
-1. Extracting data line-by-line from a structured data file using lists of tuples
-1. Writing output to a file
+2. [Extracting data from a simple file](./2_simple-data.md)
+3. [Extracting data line-by-line from a structured data file using lists of tuples](./3_structured-data.md)
+4. [Extracting all data from an unstructured data file](./4_unstructured-data.md)
+5. [Writing output to a file](./5_file-output.md)
+
+## Practical assessment
+
+This unit is all about using a more powerful tool to manage data: files! It is a practical unit that applies nearly all of the concepts we have picked up throughout the course.
+
+See the [project page](./assessment.md) for details.
+
+
+(C) 2024 David Crowley, EAO
+

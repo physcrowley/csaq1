@@ -4,11 +4,11 @@
 
 ## Vocabulary
 
-**delimiter**: a character or sequence of characters used to separate fields in a text file. Common delimiters include spaces, commas `,`, tabs `\t`, and pipes `|`, but any character can be used as a delimiter.
+**delimiter**: a character or sequence of characters used to separate fields in a text file. Common delimiters include spaces (the default), commas `,`, tabs `\t`, and pipes `|`, but any character can be used as a delimiter.
 
-**field**: a single piece of data in a text file. Fields are separated by delimiters.
+**field**: a single piece of data in a text file. Fields are separated by delimiters and their type is usually known. As pure data, they are also called **tokens**.
 
-**record**: a collection of fields that represent a single entity in a text file. Records are separated by newlines `\n`.
+**record**: a collection of fields that represent a single line in a text file. Hence records are delimited by newlines `\n`.
 
 **method chaining**: a programming technique where one method is called directly on the result of another method. For example, `file.readline()` will return a string. Instead of assigning this result to a variable and applying a string method like `strip()` to that variable, we can chain the method calls together, for example: `file.readline().strip()`. The result of the method on the left is always the object that the method on the right uses.
 
@@ -20,13 +20,15 @@ Assume we have a text file named `simple_data.txt` with the following content:
 Jimbo, Johnson, 14, 87.2\n
 ```
 
-The data appears to be separated by commas, but there are spaces after the commas. We can just use the `split()` method with the `,` as the delimieter and see if the spaces cause any problems.
+The data appears to be separated by commas, but there are spaces after the commas. 
+
+We can use the `split()` method with the `,` as the delimiter and see if the spaces cause any problems.
 
 ```python
 with open('simple_data.txt', 'r') as file:
-    fields = file.readline().split(',')
+    fields = file.readline().split(',') # split the line into a list of fields
     print(fields) # for educational purposes
-    first = fields[0]
+    first = fields[0] # to prepare the data for future use
     last = fields[1]
     age = int(fields[2])
     average = float(fields[3])
@@ -87,6 +89,12 @@ Take this short quiz to verify your understanding : [Quick check](./review/2-fie
 
 1. Reproduce the code and data file above in your project's folder (write the code in `main.py`). Set the delimiter in the `split()` method to `', '` (comma and space). What happens to the output? Would this remove the need for `strip()` if there was a text field at the end of the record (i.e. just before the newline)? Add your answers as a comment in main.py.
 
-2. Change the data file to remove the comma between the first and last names, and change the code so there is only one variable for the full name (why not `full_name`?). Don't forget to change the field indexes for the other variables. Also don't forget to change the print statements. Does the delimiter in `split()` apply each character individually (i.e. comma OR space) or as a sequence (comma AND space)? How could you tell? Add your answers as a comment in main.py.
+2. Change the data file to remove the comma between the first and last names, and change the code so there is only one variable for the full name (why not `full_name`?). 
+   - Don't forget to change the field indexes for the other variables. 
+   - Also don't forget to change the print statements. 
+   - Does the delimiter in `split()` apply each character individually (i.e. comma OR space) or as a sequence (comma AND space)? How could you tell? Add your answers as a comment in main.py.
 
-3. Create a new data file that includes one record made of several fields of different data types separated by commas. Write a script in your project's `main.py` file that reads, cleans and presents the data in this file after it reads that data from the `simple_data.txt` file.
+3. Create a new data file that includes one record made of several fields of different data types separated by commas. Write a script in your project's `main.py` file that reads, cleans and presents the data in this file just after it reads that data from the `simple_data.txt` file.
+
+
+(C) 2024 David Crowley, EAO

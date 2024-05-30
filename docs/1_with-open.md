@@ -64,16 +64,19 @@ file = open(file_path, mode)
 ```
 
 - `file_path` is the path to the file to be opened, as described above.
-- `mode` is a string that specifies how the file should be opened. The most common modes are:
+- `mode` is a string that specifies how the file should be opened. The most common modes for text files are:
   - `'r'` (read): opens the file for reading. The file must exist. This is the default mode.
   - `'w'` (write): opens the file for writing. If the file does not exist, it will be created. If the file does exist, it will be overwritten.
   - `'a'` (append): opens the file for writing. If the file does not exist, it will be created. If the file does exist, new data will be added to the end of the file.
 
 The file object returned by `open()` has several methods that can be used to read or write data to the file. The most common methods are:
 
-- `read()`: reads the entire file and returns its contents as a string. The file needs to be opened in read mode (`'r'`) to use this method.
-- `readline()`: reads the next line of the file and returns it as a string. The file needs to be opened in read mode (`'r'`) to use this method.
-- `write(data)`: writes the data to the file. The file needs to be opened in write mode (`'w'`) or append mode (`'a`) to use this method.
+- For reading (in 'r' mode):
+  - `read()`: reads the entire file and returns its contents as a (possibly enormous) string.
+  - `readline()`: reads the next line of the file and returns it as a string.
+  - `readlines()`: reads all the lines of the file and returns them as a list of strings.
+- For writing (in 'w' or 'a' mode):
+  - `write(data)`: writes the data to the file.
 
 > We will see some examples for these methods in the coding challenges below and again in the next lessons.
 
@@ -147,3 +150,6 @@ print(data) # outside of the with block
 
 1. Does the program print the text as you expected? Does it give you an error?
 2. Change the `read()` method to `readlines()`  (plural) and run the program again. What is the difference in the output?
+
+
+(C) 2024 David Crowley, EAO
