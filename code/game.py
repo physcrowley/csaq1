@@ -1,17 +1,22 @@
 # File: game.py
 
+""" Extract and organize the game data """
+
 # read data into memory
 with open("./data/game_data.txt", "r") as file:
     data = file.read()
 
 # created nested lists from the data
-rooms = data.strip().split("###") # split the data into rooms
-# split each room into sections 
+rooms = data.strip().split("###")  # split the data into rooms
+# split each room into sections
 for i in range(len(rooms)):
     rooms[i] = rooms[i].strip().split("\n\n")
 # split options section into a list of options
 for r in rooms:
     r[2] = r[2].strip().split(", ")
+
+
+""" Game logic """
 
 # welcome message
 print("Welcome to the game!")
@@ -33,7 +38,7 @@ current_room = ""
 # the current exit condition is in the Computer area
 while current_room != "Computer" and current_move != "Exit":
     current_room = current_move
-    
+
     # find the current room
     room = None
     for r in rooms:
@@ -44,12 +49,12 @@ while current_room != "Computer" and current_move != "Exit":
         print("Error: Room not found")
         break
     # show room information
-    print("\n" + room[0]) # room name
-    print(room[1]) # room description
-    options = room[2] # room options
+    name, description, options = room
+    print("\n" + name)
+    print(description)
     print("\nHere are your options. Enter at least the 3 first characters:")
     for o in options:
-        print(f"  [{o}]  ", end = "")
+        print(f"  [{o}]  ", end="")
     # get the next valid move
     print("\n")
     valid_move = False
@@ -63,4 +68,4 @@ while current_room != "Computer" and current_move != "Exit":
                 valid_move = True
                 break
 
-print("Goodbye!")    
+print("Goodbye!")
