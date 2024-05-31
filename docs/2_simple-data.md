@@ -157,6 +157,6 @@ weather, 25.2, 9, sunny
 
 </pre>	
 
-</details>
+</summary></details>
 
 (C) 2024 David Crowley, EAO

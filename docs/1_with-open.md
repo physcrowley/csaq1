@@ -247,6 +247,6 @@ first line.
 """
 </code></pre>
 
-</details>
+</summary></details>
 
 (C) 2024 David Crowley, EAO
