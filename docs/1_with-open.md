@@ -156,9 +156,9 @@ print(data) # outside of the with block
 
 <details><summary><i>JuiceMind solutions<i></summary>
 
-File structure
+<p>File structure</p>
 
-```
+<pre>
 project/
 ├── data/
 |   └── new_file.txt
@@ -166,11 +166,11 @@ project/
 ├── file_io_2.py
 ├── file_io_3.py
 └── main.py
-```
+</pre>
 
-main.py
+<p>main.py</p>
 
-```python
+<pre><code class="language-python">
 # Add an import statement for the script you want to run.
 # This file should only have a single import statement in it.
 
@@ -178,19 +178,19 @@ main.py
 # import file_io_1
 # import file_io_2
 import file_io_3
-```
+</code></pre>
 
-./data/new_file.txt
+<p>./data/new_file.txt</p>
 
-```
+<pre>
 Hello, world!is this on a new line?
 what about now?
 
-```	
+</pre>	
 
-file_io_1.py
+<p>file_io_1.py</p>
 
-```python
+<pre><code class="language-python">
 with open('./data/new_file.txt', 'w') as file:
     file.write('Hello, world!')
     file.write('is this on a new line?')
@@ -202,15 +202,15 @@ Answers
 1. The program crashed. I had to add the main folder manually
 for it to work.
 
-2. The second write data is on the same line as the first
+1. The second write data is on the same line as the first
 write data. You need to use the \n with write, unlike with 
 print.
 """
-```
+</code></pre>
 
-file_io_2.py
+<p>file_io_2.py</p>
 
-```python
+<pre><code class="language-python">
 with open('./data/new_file.txt', 'r') as file:
     for line in file:
         print(line.strip())  
@@ -221,14 +221,14 @@ Answers
 1. There is an extra space between the lines that isn't there
 in the file.
 
-2. Adding .strip() fixed the appearance of the text. Both the
+1. Adding .strip() fixed the appearance of the text. Both the
 printed lines and the file contents look the same.
 """
-```	
+</code></pre>	
 
-file_io_3.py
+<p>file_io_3.py</p>
 
-```python
+<pre><code class="language-python">
 with open('./data/new_file.txt', 'r') as file:
     data = file.readlines() # reads all the content in one go
 
@@ -241,11 +241,11 @@ Answers
 outside the with block. And all the data in on single print statement
 didn't affect the line returns within the data.
 
-2. The data variable is now a list containing each line in the file
+1. The data variable is now a list containing each line in the file
 as a separate element. The \n character is visible at the end of the
 first line.
 """
-```
+</code></pre>
 
 </details>
 

@@ -100,8 +100,9 @@ Take this short quiz to verify your understanding : [Quick check](./review/2-fie
 
 <details><summary><i>JuiceMind solutions<i></summary>
 
-main.py
-```python	
+<p>main.py</p>
+
+<pre><code class="language-python">	
 with open('simple_data.txt', 'r') as file:
     fields = file.readline().split(', ')
     print(fields) # for educational purposes
@@ -140,19 +141,21 @@ with open("weather.txt", "r") as file:
 
 print("The weather today is", sky, "with a temperture of", temperature, "Celcius")
 print("and a UV index of", uv)
-```
+</code></pre>
 
-simple_data.txt
-```
+<p>simple_data.txt</p>
+
+<pre>
 Jimbo Johnson, 14, 87.2
 
-```	
+</pre>	
 
-weather.txt
-```
+<p>weather.txt</p>
+
+<pre>
 weather, 25.2, 9, sunny
 
-```	
+</pre>	
 
 </details>
 
