@@ -474,6 +474,190 @@ print("The longest number of days with no precipitation was", max_streak, "days 
 
 <p>game_data.txt</p>
 
+<pre>
+Dark basement
+
+You are in a dim basement, lit only by the pale glow of the computer screen.
+It has been days since you have seen the sun.
+
+Main floor, Computer, Furnace room
+
+sock, bag of chips
+
+Eww! That's smelly!, All dressed are the best
+
+###
+Main floor
+
+You are on the main floor of the house. It is raining outside, but there is
+an interesting smell coming from the kitchen.
+
+Dark basement, Kitchen
+
+keys
+
+Wonder what this opens?
+
+###
+Kitchen
+
+Mmmmmm, coffee!
+
+Main floor, Dark basement
+
+steaming mug of joe
+
+That's what I needed
+
+###
+Computer
+
+You see a screen with a blinking cursor. It is waiting for your command.
+In fact, it is waiting for you to type `exit`.
+
+Exit
+
+power button
+
+Time for sleep
+
+###
+Furnace room
+
+What a mess! You can't even see the furnace for all the junk in here.
+Oh wait! Is that my old skateboard?
+
+Dark basement
+
+skateboard, broken electronics box
+
+I should take this for a ride, I'm sure this will come in handy one day
+</pre>
+
+<p>game.py</p>
+
+<pre><code class="language-python">
+# File: game.py
+
+"""
+Added items and an associated item-message list to each room
+
+Updated the file reading and game logic accordingly
+"""
+
+""" Extract and organize the game data """
+
+# read data into memory
+with open("game_data.txt", "r") as file:
+    data = file.read()
+
+# created nested lists from the data
+rooms = data.strip().split("###")  # split the data into rooms
+
+NAME = 0
+DESCRIPTION = 1
+OPTIONS = 2
+ITEMS = 3
+ITEM_MSGS = 4
+
+# split each room into sections
+for i in range(len(rooms)):
+    rooms[i] = rooms[i].strip().split("\n\n")
+
+room_names = [r[NAME] for r in rooms]
+
+for r in rooms:
+    # split options section into a list of options
+    r[OPTIONS] = r[OPTIONS].strip().split(", ")
+    # split items section into a list of items
+    r[ITEMS] = r[ITEMS].strip().split(", ")
+    # split item_message section into a list of item_messages
+    r[ITEM_MSGS] = r[ITEM_MSGS].strip().split(", ")
+
+
+""" Game logic """
+
+# welcome message
+print("Welcome to the game!")
+print("You are about to be teleported into the game world.")
+print("Here are your options:")
+print("  [exit] or [enter]\n")
+choice = ""
+while choice not in ["exit", "enter"]:
+    choice = input("> ").lower()
+
+if choice == "exit":
+    print("Goodbye!")
+    exit()
+
+# game loop
+room = rooms[0]
+current_move = room_names[0]
+collected_items = []
+current_item = None
+
+
+while room[NAME] != "Computer" or current_move == "power button":
+    # the current exit condition is in the Computer room... but the power
+    # button item shows a special message before triggering the exit
+
+    # interpret the current move as navigation or item selection
+    if current_move in room_names:
+        room_id = room_names.index(current_move)
+        room = rooms[room_id]
+        show_description = True
+    else:
+        item_id = room[ITEMS].index(current_move)
+        item_name = room[ITEMS][item_id]
+        item_msg = room[ITEM_MSGS][item_id]
+        # show item message
+        print("\n| ", item_msg)
+        # special exit condition
+        if item_name == "power button":
+            print("Shutting down... ", end="")
+            break
+        # update collection and show results
+        collected_items.append(item_name)
+        print("|  You have added", item_name, "to your collection.")
+        print("|  Inventory: ", collected_items)
+        # skip the room description
+        show_description = False
+
+    # extract room data
+    name, description, options, items, item_msgs = room
+
+    # show room information
+    print("\n" + name)
+    if show_description:
+        print(description)
+    # show navigation options
+    print("\nYou can go here: ", end="")
+    for o in options:
+        print(f"  [{o}]  ", end="")
+    # show items available to pick up
+    print("\nOr you can pick up one of these items : ", end="")
+    available_items = [i for i in items if i not in collected_items]
+    for i in available_items:
+        print(f"  [{i}]  ", end="")
+    if len(available_items) == 0:
+        print("(nothing here)", end="")
+    print("\n")
+    # get the next valid move
+    print("Enter your move (at least 3 characters)")
+    valid_move = False
+    while not valid_move:
+        current_move = input("> ")
+        if len(current_move) < 3:
+            continue
+        for e in options + available_items:
+            if e.lower().startswith(current_move.lower()):
+                current_move = e
+                valid_move = True
+                break
+
+print("Goodbye!")
+</code></pre>
+
 
 </details>
 
