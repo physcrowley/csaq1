@@ -277,19 +277,19 @@ We can use this data in a fairly simple game engine that relies on extracting al
 """ Extract and organize the game data """
 
 # read data into memory
-with open("./data/game_data.txt", "r") as file:
+with open("game_data.txt", "r") as file:
     data = file.read()
 
-# created nested lists from the data
-rooms = data.strip().split("###")  # split the data into rooms
-
-NAME = 0
-DESCRIPTION = 1
-OPTIONS = 2
+# split the data into rooms
+rooms = data.strip().split("###")  
 
 # split each room into sections
 for i in range(len(rooms)):
     rooms[i] = rooms[i].strip().split("\n\n")
+
+NAME = 0
+DESCRIPTION = 1
+OPTIONS = 2
 
 room_names = [r[NAME] for r in rooms]
 
@@ -563,18 +563,18 @@ Updated the file reading and game logic accordingly
 with open("game_data.txt", "r") as file:
     data = file.read()
 
-# created nested lists from the data
-rooms = data.strip().split("###")  # split the data into rooms
+# split the data into rooms
+rooms = data.strip().split("###")  
+
+# split each room into sections
+for i in range(len(rooms)):
+    rooms[i] = rooms[i].strip().split("\n\n")
 
 NAME = 0
 DESCRIPTION = 1
 OPTIONS = 2
 ITEMS = 3
 ITEM_MSGS = 4
-
-# split each room into sections
-for i in range(len(rooms)):
-    rooms[i] = rooms[i].strip().split("\n\n")
 
 room_names = [r[NAME] for r in rooms]
 
