@@ -265,7 +265,7 @@ Dark basement
 
 ```
 
-- Notice that every single option is the name of a room. This is a simple way to manage the game's progression.
+- Notice that every single option is the name of a room. This is a simple way to manage the game's navigation.
 
 ### Using the structured game data
 
