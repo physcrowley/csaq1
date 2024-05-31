@@ -12,9 +12,11 @@ If you can understand how to read and write data from structured and unstructure
 
 ### Learning outcomes
 
-- I can load data from a file into program memory using commands appropriate to how the data is organised within the file.
-- I can write output to a file instead of to the console.
-- I can analyse the data or incorporate it into the rest of the program using appropriate algorithms.
+At the end of this unit, you will be able to:
+
+- Load data from a file into program memory using commands appropriate to how the data is organised within the file.
+- Write output to a file instead of to the console.
+- IAnalyse the data or incorporate it into the rest of the program using appropriate algorithms.
 
 ## Success criteria
 
@@ -33,6 +35,12 @@ If you can understand how to read and write data from structured and unstructure
 This unit is all about using a more powerful tool to manage data: files! It is a practical unit that applies nearly all of the concepts we have picked up throughout the course.
 
 See the [project page](./assessment.md) for details.
+
+## Additional resources
+
+The following video by Corey Schafer does a good job of recapping the basics of file input/output in Python and goes into some topics that were not covered in this unit (like reading and writing binary files like images).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Uh2ebFW8OYM?si=Hv3H6GNUnXxGD_IW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 (C) 2024 David Crowley, EAO

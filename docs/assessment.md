@@ -31,21 +31,16 @@ In this project, you will be applying the basics of file writing and reading wit
 
 Your program will be assessed on the following criteria:
 
--[ ] CO: All deliverables are submitted in the requested format.
+- CO: All deliverables are submitted in the requested format.
 
--[ ] CO: The code is well-structured and easy to read (variable names are descriptive, comments are used where necessary).
+- CO: The code is well-structured and easy to read (variable names are descriptive, comments are used where necessary).
 
--[ ] AP: The program conforms to all of the task requirements.
+- AP: The program conforms to all of the task requirements.
 
--[ ] AP: The program doesn't crash when run.
+- AP: The program doesn't crash when run.
 
 
-## Additional resources
-
-The following video by Corey Schafer does a good job of recapping the basics of file input/output in Python and goes into some topics that were not covered in this unit (like reading and writing binary files like images).
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Uh2ebFW8OYM?si=Hv3H6GNUnXxGD_IW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<div>
 <details><summary><i>JuiceMind Solutions</i></summary>
 
 <p>main.py</p>
@@ -200,6 +195,6 @@ was disposed to be his friend; so, between these three on one side, an
 </pre>
 
 
-</details><p></p>
+</details></div><p></p>
 
 (C) 2024 David Crowley, EAO
