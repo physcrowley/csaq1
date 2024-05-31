@@ -355,7 +355,9 @@ print("Goodbye!")
 
 The great thing about this approach is that you can add new areas, descriptions, and options to the game without changing the code. You can even add new types of data to the file and modify the code to handle it without changing the existing code. The game play still needs to be developed, but the basic game data is fairly straightforward to manage.
 
-## 📝 Practice - coding challenges
+## 📝 Practice
+
+### Coding challenges
 
 > You can use the JuiceMind platform to complete these challenges with the following classroom: [Physcrowley's Class](https://play.juicemind.com/dashboard/teams/XUUbpCs933IEk84h7SFH/item/802271cf-be62-45b4-9886-2373b8bfd553)
 
