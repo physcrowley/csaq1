@@ -154,7 +154,7 @@ print(data) # outside of the with block
 2. Change the `read()` method to `readlines()`  (plural) and run the program again. What is the difference in the output?
 
 
-<details><summary><i>JuiceMind solutions<i></summary>
+<details><summary><i>JuiceMind solutions</i></summary>
 
 <p>File structure</p>
 
@@ -247,6 +247,6 @@ first line.
 """
 </code></pre>
 
-</summary></details>
+</details>
 
 (C) 2024 David Crowley, EAO

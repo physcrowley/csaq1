@@ -98,7 +98,7 @@ Take this short quiz to verify your understanding : [Quick check](./review/2-fie
 
 3. Create a new data file that includes one record made of several fields of different data types separated by commas. Write a script in your project's `main.py` file that reads, cleans and presents the data in this file just after it reads that data from the `simple_data.txt` file.
 
-<details><summary><i>JuiceMind solutions<i></summary>
+<details><summary><i>JuiceMind solutions</i></summary>
 
 <p>main.py</p>
 
@@ -157,6 +157,6 @@ weather, 25.2, 9, sunny
 
 </pre>	
 
-</summary></details>
+</details>
 
 (C) 2024 David Crowley, EAO
