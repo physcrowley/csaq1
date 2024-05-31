@@ -10,6 +10,10 @@
 
 **prose**: written or spoken language in its ordinary form, without metrical structure.
 
+## Source file
+
+The source file for this lesson is Charles Dicken's "Oliver Twist", as released by the Project Gutenberg. You can download it [here](./public_data/oliver_twist.txt).
+
 ## Example: counting things in a text file
 
 Human-generated text in a specific language has a lot of hidden structure, like the frequencies of words or letters or digits. We can extract this information from a text file and use it to analyse the text. Sometimes this could just be looking words up in the text, but other times it might be to check the authenticity of the text or other forensic analysis.
@@ -27,7 +31,7 @@ Human-generated text in a specific language has a lot of hidden structure, like 
 
 ### Coding challenges
 
-1. In a text file, count all the :
+1. From the Oliver Twist text file, count all the :
    1. sentences
    2. capital letters (A-Z) _hint: use the `isupper()` method of strings or the ASCII value of a character_
    3. paragraphs
