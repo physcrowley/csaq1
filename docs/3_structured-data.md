@@ -225,7 +225,6 @@ Option 1, Option 2, Option 3
 Let's say we have the following text in a file named `game_data.txt`:
 
 ```
-###
 Dark basement
 
 You are in a dim basement, lit only by the pale glow of the computer screen.
@@ -263,6 +262,7 @@ What a mess! You can't even see the furnace for all the junk in here.
 Oh wait! Is that my old skateboard?
 
 Dark basement
+
 ```
 
 - Notice that every single option is the name of a room. This is a simple way to manage the game's progression.
@@ -282,12 +282,20 @@ with open("./data/game_data.txt", "r") as file:
 
 # created nested lists from the data
 rooms = data.strip().split("###")  # split the data into rooms
+
+NAME = 0
+DESCRIPTION = 1
+OPTIONS = 2
+
 # split each room into sections
 for i in range(len(rooms)):
     rooms[i] = rooms[i].strip().split("\n\n")
-# split options section into a list of options
+
+room_names = [r[NAME] for r in rooms]
+
 for r in rooms:
-    r[2] = r[2].strip().split(", ")
+    # split options section into a list of options
+    r[OPTIONS] = r[OPTIONS].strip().split(", ")
 
 
 """ Game logic """
@@ -306,26 +314,26 @@ if choice == "exit":
     exit()
 
 # game loop
-current_move = "Dark basement"
-current_room = ""
+room = rooms[0]
+current_move = room_names[0]
 
-# the current exit condition is in the Computer area
-while current_room != "Computer" and current_move != "Exit":
-    current_room = current_move
 
-    # find the current room
-    room = None
-    for r in rooms:
-        if r[0] == current_room:
-            room = r
-            break
-    if room is None:
-        print("Error: Room not found")
+while room[NAME] != "Computer" and current_move != "Exit":
+    # the current exit condition is in the Computer area
+    
+    # check if the current move is a room name
+    if current_move in room_names:
+        room_id = room_names.index(current_move)
+        room = rooms[room_id]
+    else:
+        print("Error : that room does not exist.")
         break
+
     # show room information
     name, description, options = room
     print("\n" + name)
     print(description)
+    # show options
     print("\nHere are your options. Enter at least the 3 first characters:")
     for o in options:
         print(f"  [{o}]  ", end="")
@@ -362,12 +370,11 @@ The great thing about this approach is that you can add new areas, descriptions,
 
 <pre>
 project/
-│
-├── main.py
 ├── en_climate_daily_ON_6106001_2024_P1D.csv
 ├── game.py
 ├── game_data.txt
-└─── weather.py
+├── main.py
+└── weather.py
 </pre>
 
 <p>main.py</p>
@@ -380,6 +387,93 @@ import game
 </code></pre>
 
 <p>Other file contents begin as described in the notes but should morph. Here is one possibility for each file after the changes:</p>
+
+<p>weather.py</p>
+
+<pre><code class="language-python">
+# File: weather.py
+
+"""
+Modified to output maximum and minimum temperatures recorded during the year and the longest stretch of days without any precipitation.
+
+The file reading portion was changed to exclude the month value from the record since it is not needed, but added the date value for the output.
+
+The data compilation algorithm was significantly changed.
+"""
+
+# create data list to hold the records
+data = []
+
+""" Read the file """
+
+# field indexes in the data file
+# month = 6
+date_str = 4
+temp = 13
+precip = 23
+
+# extract selected fields from all valid records in the file
+with open("en_climate_daily_ON_6106001_2024_P1D.csv", "r") as file:
+    for line in file:
+        fields = line.strip().split(",")
+        # check for completely empty data fields (end of data)
+        if fields[temp] == '""' and fields[temp + 1] == '""':
+            break
+        # strip quotes before adding chosen fields to the record
+        record = (
+            # fields[month].strip('"'),
+            fields[date_str].strip('"'),
+            fields[temp].strip('"'),
+            fields[precip].strip('"'),
+        )
+        # add the record to the data list
+        data.append(record)
+
+
+""" Compile data from the records """
+
+# initialize collector and flag variables with first data record
+date, temp, precip = data[1]
+
+max_T = float(temp)
+max_date = date
+min_T = float(temp)
+min_date = date
+streak = 1 if precip == 0 else 0
+max_streak = streak
+streak_start = date
+streak_end = date
+
+# iterate over other records
+for i in range(2, len(data)):
+    # unpack the record
+    date, temp, precip = data[i]
+    # check if max values need updating
+    if len(temp) > 0:
+        temp = float(temp)
+        if temp > max_T :
+          max_T = temp
+          max_date = date
+        elif temp < min_T :
+          min_T = temp
+          min_date = date
+    if len(precip) > 0:
+        if float(precip) == 0: # on a streak
+          streak += 1
+          if streak > max_streak:
+            max_streak = streak
+            streak_start = data[i-streak][0]
+            streak_end = date
+        else: # streak ends
+          streak = 0
+
+print(f"The highest recorded temperature was {max_T}C on {max_date}")
+print(f"The lowest recorded temperature was {min_T}C on {min_date}")
+print("The longest number of days with no precipitation was", max_streak, "days from", streak_start, "to", streak_end)
+</code></pre>
+
+<p>game_data.txt</p>
+
 
 </details>
 

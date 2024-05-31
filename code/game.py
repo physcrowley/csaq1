@@ -8,12 +8,20 @@ with open("./data/game_data.txt", "r") as file:
 
 # created nested lists from the data
 rooms = data.strip().split("###")  # split the data into rooms
+
+NAME = 0
+DESCRIPTION = 1
+OPTIONS = 2
+
 # split each room into sections
 for i in range(len(rooms)):
     rooms[i] = rooms[i].strip().split("\n\n")
-# split options section into a list of options
+
+room_names = [r[NAME] for r in rooms]
+
 for r in rooms:
-    r[2] = r[2].strip().split(", ")
+    # split options section into a list of options
+    r[OPTIONS] = r[OPTIONS].strip().split(", ")
 
 
 """ Game logic """
@@ -32,26 +40,26 @@ if choice == "exit":
     exit()
 
 # game loop
-current_move = "Dark basement"
-current_room = ""
+room = rooms[0]
+current_move = room_names[0]
 
-# the current exit condition is in the Computer area
-while current_room != "Computer" and current_move != "Exit":
-    current_room = current_move
 
-    # find the current room
-    room = None
-    for r in rooms:
-        if r[0] == current_room:
-            room = r
-            break
-    if room is None:
-        print("Error: Room not found")
+while room[NAME] != "Computer" and current_move != "Exit":
+    # the current exit condition is in the Computer area
+    
+    # check if the current move is a room name
+    if current_move in room_names:
+        room_id = room_names.index(current_move)
+        room = rooms[room_id]
+    else:
+        print("Error : that room does not exist.")
         break
+
     # show room information
     name, description, options = room
     print("\n" + name)
     print(description)
+    # show options
     print("\nHere are your options. Enter at least the 3 first characters:")
     for o in options:
         print(f"  [{o}]  ", end="")
