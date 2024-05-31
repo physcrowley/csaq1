@@ -46,6 +46,160 @@ The following video by Corey Schafer does a good job of recapping the basics of 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Uh2ebFW8OYM?si=Hv3H6GNUnXxGD_IW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+<details><summary><i>JuiceMind Solutions</i></summary>
 
+<p>main.py</p>
+
+<pre><code class="language-python">
+import final
+</code></pre>
+
+<p>final.py</p>
+
+<pre><code class="language-python">
+"""
+Name: David Crowley
+Date: May 31st, 2024
+File: main.py
+Description:
+This is an exemplar for the final task in the File IO unit.
+
+The generated data is structured as follows, using a ~ as the delimiter because the
+text itself can contain commas:
+
+Random text~Random number
+
+The program generates 100 of these records and saves them to a file called "data.txt".
+
+It then reads the file and calculates the average word length and the finds the biggest
+number in the file.
+
+Finally it writes the results to a file called "results.txt".
+
+~~~~~~~
+
+For generating the random text, it uses a random substring from an excerpt from Oliver 
+Twist that is saved in the `final_random_source.txt` file. The random number is just 
+the sum of the ASCII values of the characters in the random text divided by a random number.
+"""
+
+import random
+
+#
+# GENERATE THE DATA
+#
+
+# get the source text for generating the random strings
+
+with open("final_random_source.txt", "r") as f:
+    source_text = f.read()
+
+# remove all the newlines and extra spaces
+source_text = source_text.replace("\n", " ").replace("  ", " ")
+
+n = 101 # number of records to generate
+text_values = []
+number_values = []
+
+# generate the random text values
+size = 20 # max length of each value
+max = len(source_text) - size
+
+for i in range(n):
+    start = random.randint(0, max)
+    end = start + random.randint(3, size)
+    text_values.append(source_text[start:end])
+
+# generate the random number values
+for text in text_values:
+    number = sum([ord(c) for c in text])
+    number /= random.randint(3, 7)
+    number_values.append(number)
+
+#
+# WRITE THE DATA TO A FILE
+#
+
+with open("data.txt", "w") as f:
+    f.write("Text~Number\n")
+    for i in range(n):
+        f.write(f"{text_values[i]}~{number_values[i]}\n")
+
+#
+# READ THE DATA FROM THE FILE AND ANALYZE IT
+#
+
+with open("data.txt", "r") as f:
+    f.readline() # skip the header
+    lines = f.readlines()
+
+# traverse the lines to calculate the average word length and track the biggest number
+
+quantity = len(lines)
+total_length = 0
+biggest_number = 0
+biggest_number_text = ""
+
+for line in lines:
+    text, number = line.strip().split("~") # split the line into text and number
+    # collect the length of the text
+    total_length += len(text)
+    # check if the number is the biggest
+    number = float(number)
+    if number > biggest_number:
+        biggest_number = number
+        biggest_number_text = text
+
+average_length = total_length / quantity
+
+#
+# PREPARE THE OUTPUT
+#
+
+# as a string
+output = f"Average word length: {average_length:.1f}\n"
+output += f"Biggest number: {biggest_number:.1f} ('{biggest_number_text}')\n"
+
+# to a file
+with open("results.txt", "w") as f:
+    f.write(output)
+
+# to the console
+print(output)
+</code></pre>
+
+<p>final_random_source.txt</p>
+
+<pre>
+old lady or gentleman, who was surrounded by a great number of nephews
+and nieces, who had been perfectly inconsolable during the previous
+illness, and whose grief had been wholly irrepressible even on the most
+public occasions, they would be as happy among themselves as need
+be—quite cheerful and contented—conversing together with as much
+freedom and gaiety, as if nothing whatever had happened to disturb
+them. Husbands, too, bore the loss of their wives with the most heroic
+calmness. Wives, again, put on weeds for their husbands, as if, so far
+from grieving in the garb of sorrow, they had made up their minds to
+render it as becoming and attractive as possible. It was observable,
+too, that ladies and gentlemen who were in passions of anguish during
+the ceremony of interment, recovered almost as soon as they reached
+home, and became quite composed before the tea-drinking was over. All
+this was very pleasant and improving to see; and Oliver beheld it with
+great admiration.
+
+That Oliver Twist was moved to resignation by the example of these good
+people, I cannot, although I am his biographer, undertake to affirm
+with any degree of confidence; but I can most distinctly say, that for
+many months he continued meekly to submit to the domination and
+ill-treatment of Noah Claypole: who used him far worse than before, now
+that his jealousy was roused by seeing the new boy promoted to the
+black stick and hat-band, while he, the old one, remained stationary in
+the muffin-cap and leathers. Charlotte treated him ill, because Noah
+did; and Mrs. Sowerberry was his decided enemy, because Mr. Sowerberry
+was disposed to be his friend; so, between these three on one side, an
+</pre>
+
+
+</details><p></p>
 
 (C) 2024 David Crowley, EAO
