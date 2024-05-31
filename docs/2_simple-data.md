@@ -87,6 +87,8 @@ Take this short quiz to verify your understanding : [Quick check](./review/2-fie
 
 ### Coding challenges
 
+> You can use the JuiceMind platform to complete these challenges with the following classroom: [Physcrowley's Class](https://play.juicemind.com/dashboard/teams/XUUbpCs933IEk84h7SFH/item/802271cf-be62-45b4-9886-2373b8bfd553)
+
 1. Reproduce the code and data file above in your project's folder (write the code in `main.py`). Set the delimiter in the `split()` method to `', '` (comma and space). What happens to the output? Would this remove the need for `strip()` if there was a text field at the end of the record (i.e. just before the newline)? Add your answers as a comment in main.py.
 
 2. Change the data file to remove the comma between the first and last names, and change the code so there is only one variable for the full name (why not `full_name`?). 
@@ -96,5 +98,62 @@ Take this short quiz to verify your understanding : [Quick check](./review/2-fie
 
 3. Create a new data file that includes one record made of several fields of different data types separated by commas. Write a script in your project's `main.py` file that reads, cleans and presents the data in this file just after it reads that data from the `simple_data.txt` file.
 
+<details><summary><i>JuiceMind solutions<i></summary>
+
+main.py
+```python	
+with open('simple_data.txt', 'r') as file:
+    fields = file.readline().split(', ')
+    print(fields) # for educational purposes
+    # first = fields[0]
+    # last = fields[1]
+    full = fields[0]
+    age = int(fields[1])
+    average = float(fields[2])
+
+print("Name:", full, "age:", age, "average:", average)
+# print(last, "is Johnson:", last == "Johnson")
+
+"""
+Answers
+1. The extra spaces disappear in the output and we get:
+['Jimbo', 'Johnson', '14', '87.2\n']... however the '\n' is still
+there, so we still need a 'strip()' call if the last field is a
+string
+
+2. The delimiter is applied as a sequence, not as a set of individual
+separators. If they applied individually, then the two names (separated
+by a space), would not be a single field but two distinct fields. Instead
+we got ['Jimbo Johnson', '14', '87.2\n'] so the ', ' delimiter only applied when both characters were present in that sequence.
+"""
+
+#
+# ONE POSSIBILITY FOR #3
+#
+
+with open("weather.txt", "r") as file:
+  fields = file.readline().split(", ")
+  # skipping field[0]
+  temperature = float(fields[1])
+  uv = int(fields[2])
+  sky = fields[3].strip()
+
+print("The weather today is", sky, "with a temperture of", temperature, "Celcius")
+print("and a UV index of", uv)
+```
+
+simple_data.txt
+```
+Jimbo Johnson, 14, 87.2
+
+```	
+
+weather.txt
+```
+weather, 25.2, 9, sunny
+
+```	
+
+</details>
 
 (C) 2024 David Crowley, EAO

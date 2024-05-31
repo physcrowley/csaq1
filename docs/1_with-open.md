@@ -117,6 +117,8 @@ This is because the close operation is included automatically and implicitly at 
 
 ### Coding challenges
 
+> You can use the JuiceMind platform to complete these challenges with the following classroom: [Physcrowley's Class](https://play.juicemind.com/dashboard/teams/XUUbpCs933IEk84h7SFH/item/802271cf-be62-45b4-9886-2373b8bfd553)
+
 In your project folder, write a Python script named `file_io_1.py` that includes the following code for writing to a new file:
 
 ```python	
@@ -151,5 +153,100 @@ print(data) # outside of the with block
 1. Does the program print the text as you expected? Does it give you an error?
 2. Change the `read()` method to `readlines()`  (plural) and run the program again. What is the difference in the output?
 
+
+<details><summary><i>JuiceMind solutions<i></summary>
+
+File structure
+
+```
+project/
+├── data/
+|   └── new_file.txt
+├── file_io_1.py
+├── file_io_2.py
+├── file_io_3.py
+└── main.py
+```
+
+main.py
+
+```python
+# Add an import statement for the script you want to run.
+# This file should only have a single import statement in it.
+
+# For example, to run file_io_1.py uncomment the next line:
+# import file_io_1
+# import file_io_2
+import file_io_3
+```
+
+./data/new_file.txt
+
+```
+Hello, world!is this on a new line?
+what about now?
+
+```	
+
+file_io_1.py
+
+```python
+with open('./data/new_file.txt', 'w') as file:
+    file.write('Hello, world!')
+    file.write('is this on a new line?')
+    file.write('\nwhat about now?')
+
+"""
+Answers
+
+1. The program crashed. I had to add the main folder manually
+for it to work.
+
+2. The second write data is on the same line as the first
+write data. You need to use the \n with write, unlike with 
+print.
+"""
+```
+
+file_io_2.py
+
+```python
+with open('./data/new_file.txt', 'r') as file:
+    for line in file:
+        print(line.strip())  
+
+"""
+Answers
+
+1. There is an extra space between the lines that isn't there
+in the file.
+
+2. Adding .strip() fixed the appearance of the text. Both the
+printed lines and the file contents look the same.
+"""
+```	
+
+file_io_3.py
+
+```python
+with open('./data/new_file.txt', 'r') as file:
+    data = file.readlines() # reads all the content in one go
+
+print(data) # outside of the with block
+
+"""
+Answers
+
+1. It prints as expected. The data variable seems to be available
+outside the with block. And all the data in on single print statement
+didn't affect the line returns within the data.
+
+2. The data variable is now a list containing each line in the file
+as a separate element. The \n character is visible at the end of the
+first line.
+"""
+```
+
+</details>
 
 (C) 2024 David Crowley, EAO
