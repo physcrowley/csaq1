@@ -492,7 +492,7 @@ Main floor
 You are on the main floor of the house. It is raining outside, but there is
 an interesting smell coming from the kitchen.
 
-Dark basement, Kitchen
+Dark basement, Kitchen, Bathroom
 
 keys
 
@@ -532,6 +532,18 @@ Dark basement
 skateboard, broken electronics box
 
 I should take this for a ride, I'm sure this will come in handy one day
+
+###
+Bathroom
+
+The white ceramic gleams menacingly. There is a strong odour of soap.
+
+Main floor
+
+toothbrush
+
+I should make my teeth gleam menacingly too!
+
 </pre>
 
 <p>game.py</p>
