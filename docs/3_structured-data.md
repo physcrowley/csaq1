@@ -349,11 +349,38 @@ The great thing about this approach is that you can add new areas, descriptions,
 
 ## 📝 Practice - coding challenges
 
+> You can use the JuiceMind platform to complete these challenges with the following classroom: [Physcrowley's Class](https://play.juicemind.com/dashboard/teams/XUUbpCs933IEk84h7SFH/item/802271cf-be62-45b4-9886-2373b8bfd553)
+
 1. Copy these examples and their data files into your project folder and run them. Make sure no transcription errors have been introduced during the copying and that the file paths are correct when attempting to open the files.
 2. Change the algorithm in `weather.py` to extract different information from the data. For example, the maximum and minimum temperatures for the year or the longest stretch of days with no precipitation.
 3. Change the game data in `game_data.txt` to add a new area and some options. Run the game and see if the new area is accessible and if the options work as expected.
 4. Try adding some more logic to the game to make it more interesting. For example, you could add items to collect (a new section in the data file plus logic to handle them in the game loop) or you could add dangers/enemies to avoid.
 
+<details><summary><i>JuiceMind solutions</i></summary>
 
+Flat file structure once the code and data have been copied into the project folder:
+
+```
+project/
+│
+├── main.py
+├── en_climate_daily_ON_6106001_2024_P1D.csv
+├── game.py
+├── game_data.txt
+└─── weather.py
+```
+
+main.py
+
+```python
+# Simply import the script here to run it. Comment out the ones you don't want to run.
+
+# import weather
+import game
+```
+
+Other file contents begin as described in the notes but should morph. Here is one possibility for each file after the changes:
+
+</summary></details>
 
 (C) 2024 David Crowley, EAO
