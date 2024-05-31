@@ -6,16 +6,16 @@
 with open("./data/game_data.txt", "r") as file:
     data = file.read()
 
-# created nested lists from the data
-rooms = data.strip().split("###")  # split the data into rooms
-
-NAME = 0
-DESCRIPTION = 1
-OPTIONS = 2
+# split the data into rooms
+rooms = data.strip().split("###")  
 
 # split each room into sections
 for i in range(len(rooms)):
     rooms[i] = rooms[i].strip().split("\n\n")
+
+NAME = 0
+DESCRIPTION = 1
+OPTIONS = 2
 
 room_names = [r[NAME] for r in rooms]
 

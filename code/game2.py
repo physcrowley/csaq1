@@ -12,18 +12,18 @@ Updated the file reading and game logic accordingly
 with open("./data/game_data2.txt", "r") as file:
     data = file.read()
 
-# created nested lists from the data
-rooms = data.strip().split("###")  # split the data into rooms
+# split the data into rooms
+rooms = data.strip().split("###")  
+
+# split each room into sections
+for i in range(len(rooms)):
+    rooms[i] = rooms[i].strip().split("\n\n")
 
 NAME = 0
 DESCRIPTION = 1
 OPTIONS = 2
 ITEMS = 3
 ITEM_MSGS = 4
-
-# split each room into sections
-for i in range(len(rooms)):
-    rooms[i] = rooms[i].strip().split("\n\n")
 
 room_names = [r[NAME] for r in rooms]
 
