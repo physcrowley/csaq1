@@ -358,9 +358,9 @@ The great thing about this approach is that you can add new areas, descriptions,
 
 <details><summary><i>JuiceMind solutions</i></summary>
 
-Flat file structure once the code and data have been copied into the project folder:
+<p>Flat file structure once the code and data have been copied into the project folder:</p>
 
-```
+<pre>
 project/
 │
 ├── main.py
@@ -368,19 +368,21 @@ project/
 ├── game.py
 ├── game_data.txt
 └─── weather.py
-```
+</pre>
 
-main.py
+<p>main.py</p>
 
-```python
+<pre><code class="language-python">
 # Simply import the script here to run it. Comment out the ones you don't want to run.
 
 # import weather
 import game
-```
+</code></pre>
 
-Other file contents begin as described in the notes but should morph. Here is one possibility for each file after the changes:
+<p>Other file contents begin as described in the notes but should morph. Here is one possibility for each file after the changes:</p>
 
-</summary></details>
+</details>
+
+<p></p>
 
 (C) 2024 David Crowley, EAO
