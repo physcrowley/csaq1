@@ -16,7 +16,7 @@ At the end of this unit, you will be able to:
 
 - Load data from a file into program memory using commands appropriate to how the data is organised within the file.
 - Write output to a file instead of to the console.
-- IAnalyse the data or incorporate it into the rest of the program using appropriate algorithms.
+- Analyse the data or incorporate it into the rest of the program using appropriate algorithms.
 
 ## Success criteria
 
