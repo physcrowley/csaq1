@@ -1,0 +1,2 @@
+Average word length: 10.8
+Biggest number: 2523.2 ('l and contented—conv')
