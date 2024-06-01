@@ -43,7 +43,7 @@ The output of this code is:
 Name: Jimbo  JOHNSON age: 14 average: 87.2
 ```
 
-We can see that the individual fields include leading and trailing spaces: ` Johnson`, ` 14` and ` 87.2\n`. However, the casting functions `int()` and `float()` ignore leading and trailing spaces when converting strings to numbers, so we didn't need to do that ourselves with the `strip()` method on each field.
+We can see that the individual fields include leading and trailing spaces: `` Johnson``, `` 14`` and `` 87.2\n``. However, the casting functions `int()` and `float()` ignore leading and trailing spaces when converting strings to numbers, so we didn't need to do that ourselves with the `strip()` method on each field.
 
 There is an additional space in front of the last name that is noticeable when we output the data. Does it affect comparisons? We can check by adding a comparison to the code:
 
